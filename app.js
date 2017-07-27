@@ -27,28 +27,22 @@ function Order(product, quantity, customer, street, city,
   Order.all.push(this);
 }
 
-new Order(productNamesArr[1], '3', 'Bob Robertsonburgton',
-  '123 Paper St.', 'Seattle', 'WA', '98122', '123-456-7890', '4400 1234 5678 9123');
-
 // Checks if there is local storage
-// if (localStorage.customerData) {
-//   console.log('data exist');
-//   Order.all = JSON.parse(localStorage.customerData);
-// } else {
-//   console.log('data is being initialized');
-// }
+if (localStorage.customerData) {
+  console.log('data exist');
+  Order.all = JSON.parse(localStorage.customerData);
+}
 
-// adding the information to local storage
-
-Order.submit = function(e) {
+Order.userForm = function(e) {
   e.preventDefault();
-  console.log('button working');
-
+  console.log(e.target);
   new Order(productNamesArr[1], '3', 'Bob Robertsonburgton',
     '123 Paper St.', 'Seattle', 'WA', '98122', '123-456-7890', '4400 1234 5678 9123');
-
-  // localStorage.surveyData JSON.stringify(Order.all);
-
+  localStorage.orderData = JSON.stringify(Order.all);
 };
+
+
+
+
 
 userForm.addEventListener('submit', Order.submit);
