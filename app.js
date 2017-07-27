@@ -27,3 +27,14 @@ function Order(product, quantity, customer, street, city,
 
 new Customer(productNamesArr[1], '3', 'Bob Robertsonburgton',
   '123 Paper St.', 'Seattle', 'WA', '98122', '123-456-7890', '4400 1234 5678 9123');
+
+// Checks if there is local storage
+if (localStorage.customerData) {
+  console.log('survey data exist');
+  Order.all = JSON.parse(localStorage.customerData);
+} else {
+  console.log('survey data is being initialized');
+}
+
+// adding the information to local storage
+localStorage.surveyData = JSON.stringify(Order.all);
