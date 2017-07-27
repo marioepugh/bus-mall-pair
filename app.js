@@ -47,7 +47,7 @@ Order.submit = function(e) {
   new Order(productNamesArr[1], '3', 'Bob Robertsonburgton',
     '123 Paper St.', 'Seattle', 'WA', '98122', '123-456-7890', '4400 1234 5678 9123');
 
-  localStorage.surveyData = JSON.stringify(Order.all);
+  // localStorage.surveyData JSON.stringify(Order.all);
 
 };
 
