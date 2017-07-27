@@ -1,5 +1,7 @@
 'use strict';
 
+var userForm = document.getElementById('content');
+
 var productNamesArr = [
   'bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg',
   'breakfast.jpg', 'bubblegum.jpg',
@@ -17,7 +19,7 @@ function Order(product, quantity, customer, street, city,
   this.product = product;
   this.quantity = quantity;
   this.customer = customer;
-  this.street = street;
+  this.address = street;
   this.city = city;
   this.state = state;
   this.phonenumber = phonenumber;
@@ -25,16 +27,28 @@ function Order(product, quantity, customer, street, city,
   Order.all.push(this);
 }
 
-new Customer(productNamesArr[1], '3', 'Bob Robertsonburgton',
+new Order(productNamesArr[1], '3', 'Bob Robertsonburgton',
   '123 Paper St.', 'Seattle', 'WA', '98122', '123-456-7890', '4400 1234 5678 9123');
 
 // Checks if there is local storage
-if (localStorage.customerData) {
-  console.log('survey data exist');
-  Order.all = JSON.parse(localStorage.customerData);
-} else {
-  console.log('survey data is being initialized');
-}
+// if (localStorage.customerData) {
+//   console.log('data exist');
+//   Order.all = JSON.parse(localStorage.customerData);
+// } else {
+//   console.log('data is being initialized');
+// }
 
 // adding the information to local storage
-localStorage.surveyData = JSON.stringify(Order.all);
+
+Order.submit = function(e) {
+  e.preventDefault();
+  console.log('button working');
+
+  new Order(productNamesArr[1], '3', 'Bob Robertsonburgton',
+    '123 Paper St.', 'Seattle', 'WA', '98122', '123-456-7890', '4400 1234 5678 9123');
+
+  localStorage.surveyData = JSON.stringify(Order.all);
+
+};
+
+userForm.addEventListener('submit', Order.submit);
