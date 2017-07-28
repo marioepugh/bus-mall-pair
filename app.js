@@ -14,11 +14,12 @@ var productNamesArr = [
 
 Order.all = []; // keep it safe
 
-function Order(product, quantity, customer, street, city,
+function Order(product, quantity, firstname, lastname, street, city,
   state, zip, phonenumber, creditcard) {
   this.product = product;
   this.quantity = quantity;
-  this.customer = customer;
+  this.firstname = firstname;
+  this.lastname = lastname;
   this.address = street;
   this.city = city;
   this.state = state;
@@ -33,16 +34,22 @@ if (localStorage.customerData) {
   Order.all = JSON.parse(localStorage.customerData);
 }
 
-Order.userForm = function(e) {
+Order.submit = function(e) {
   e.preventDefault();
-  console.log(e.target);
-  new Order(productNamesArr[1], '3', 'Bob Robertsonburgton',
-    '123 Paper St.', 'Seattle', 'WA', '98122', '123-456-7890', '4400 1234 5678 9123');
+
+  var quantity = e.target.quantity.value;
+  var firstname = e.target.firstname.value;
+  var lastname = e.target.lastname.value;
+  var streetAddress = e.target.streetAddress.value;
+  var city = e.target.city.value;
+  var state = e.target.state.value;
+  var zipCode = e.target.zipCode.value;
+  var phonenumber = '123-456-7890';
+  var creditcard = '4400 1234 5678 9123';
+  console.log(e.target.firstname.value);
+  new Order(productNamesArr[1], parseInt(quantity), firstname, lastname,
+    streetAddress, city, state, zipCode, phonenumber, creditcard);
   localStorage.orderData = JSON.stringify(Order.all);
 };
-
-
-
-
 
 userForm.addEventListener('submit', Order.submit);
