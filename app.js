@@ -34,10 +34,6 @@ if (localStorage.customerData) {
   Order.all = JSON.parse(localStorage.customerData);
 }
 
-var dropdown = function(){
-
-}
-
 Order.submit = function(e) {
   e.preventDefault();
 
