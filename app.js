@@ -52,8 +52,7 @@ if (localStorage.orderData) {
 
 Order.submit = function(e) {
   e.preventDefault();
-  var productName = e.target.value;
-  productName = Product.all[1];
+  var productName = e.target.options[e.target.selectedIndex].value;
   var quantity = e.target.quantity.value;
   var firstname = e.target.firstname.value;
   var lastname = e.target.lastname.value;
@@ -67,17 +66,13 @@ Order.submit = function(e) {
   new Order(productName, parseInt(quantity), firstname, lastname,
     streetAddress, city, state, zipCode, phonenumber, creditcard);
 
-  // new Order(productName, quantity);
-
   localStorage.orderData = JSON.stringify(Order.all);
   // userForm.reset();
 };
 
-
-
 userForm.addEventListener('submit', Order.submit);
 
-
+//
 // userForm.addEventListener('change', function(e) {
-//   console.log(e.target.value);
+//   console.log(e.target.options[e.target.selectedIndex].value);
 // });
