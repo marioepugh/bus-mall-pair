@@ -21,14 +21,12 @@
   <header>
   </header>
 
-  <div id="content">
-    <table id="table"></table>
+  <main>
     <form id="orderForm">
       <fieldset>
-
-        <form> <!-- no php calls here -->
-          <p>
-            <select id="productName">
+        <div>
+          Product
+          <select id="productName" name="productName">
             <option value="bag">R2-D2 Suitcase</option>
             <option value="banana">Banana Slicer</option>
             <option value="bathroom">Bathroom iPad stand</option>
@@ -49,36 +47,36 @@
             <option value="usb">USB Tentacle</option>
             <option value="water-can">Watering Can</option>
             <option value="wine-glass">Wine Glass</option>
+          </select>
 
+          <label for="quantityOrdered"><br>Quantity:</label>
+          <input name="quantity" type="text" />
+        </div>
 
-            </select>
-          </p>
+        <div>
+          First name:<br>
+          <input type="text" name="firstname" value=""> <br> Last name:<br>
+          <input type="text" name="lastname" value="">
+        </div>
 
-          <p>
-            <label for="quantityOrdered">Quantity:</label>
-            <input name="quantity" type="text" />
-          </p>
-          <p>
-            First name:
-            <input type="text" name="firstname" value="">
-            Last name:
-            <input type="text" name="lastname" value="">
-            <br> Street Address:
+        <div>
+          Street Address:<br>
           <input type="text" name="streetAddress" value="">
-          City:
+          <br> City:<br>
           <input type="text" name="city" value="">
-          <br> State:
+          <br> State:<br>
           <input type="text" name="state" value="">
-          Zip code:
+          <br> Zip code:<br>
           <input type="text" name="zipCode" value="">
-          <br> Credit Card Number:<input type="text" name="creditCard" value="">Expiration Date:<input type="text" name="expDate" value=""><br>
-          Place Your Order:<button type="submit">Add to shopping cart </button>
+        </div>
+
+        <div>Credit Card Number:<br>
+          <input type="text" name="creditCard" value=""><br>Expiration Date:<br><input type="text" name="expDate" value="">
+        </div>
+        <div> Place Your Order:<button type="submit">Add to shopping cart</button></div>
 
       </fieldset>
-      </form>
-  </div>
-
-  <main>
+    </form>
   </main>
 
   <footer>
