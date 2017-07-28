@@ -26,17 +26,8 @@
     <form id="orderForm">
       <fieldset>
 
-        <form> <!-- no php calls here -->
-          <p>
-            <select id="productName">
-            <option value="bag">R2-D2 Suitcase</option>
-            <option value="banana">Banana Slicer</option>
-            <option value="bathroom">Bathroom iPad stand</option>
-            <option value="boots">Rain boots</option>
-            <option value="breakfast">Breakfast toaster oven</option>
+        <form action="/action_page.php">
 
-            </select>
-          </p>
 
           <p>
             <label for="quantityOrdered">Quantity:</label>
@@ -55,8 +46,6 @@
           <input type="text" name="state" value="">
           Zip code:
           <input type="text" name="zipCode" value="">
-          <br> Credit Card Number:<input type="text" name="creditCard" value="">Expiration Date:<input type="text" name="expDate" value=""><br>
-          Place Your Order:<button type="submit">Add to shopping cart </button>
 
       </fieldset>
       </form>
