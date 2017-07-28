@@ -35,8 +35,9 @@ if (localStorage.customerData) {
 }
 
 Order.submit = function(e) {
-  e.preventDefault();
 
+  e.preventDefault();
+  var productName = e.target.options[e.target.selectedIndex].text; /// not working
   var quantity = e.target.quantity.value;
   var firstname = e.target.firstname.value;
   var lastname = e.target.lastname.value;
@@ -47,7 +48,7 @@ Order.submit = function(e) {
   var phonenumber = '123-456-7890';
   var creditcard = '4400 1234 5678 9123';
   console.log(e.target.firstname.value);
-  new Order(productNamesArr[1], parseInt(quantity), firstname, lastname,
+  new Order(productName, parseInt(quantity), firstname, lastname,
     streetAddress, city, state, zipCode, phonenumber, creditcard);
   localStorage.orderData = JSON.stringify(Order.all);
   userForm.reset();
