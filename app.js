@@ -12,7 +12,15 @@ var productNamesArr = [
   'water-can.jpg', 'wine-glass.jpg'
 ];
 
+Product.all = [];
 Order.all = []; // keep it safe
+
+function Product(name) {
+  this.name = name;
+  this.id = this.name.split('.')[0];
+  this.alt = this.name.replace('-', ' ').split('.')[0];
+  Product.all.push(this);
+}
 
 function Order(product, quantity, firstname, lastname, street, city,
   state, zip, phonenumber, creditcard) {
@@ -29,15 +37,17 @@ function Order(product, quantity, firstname, lastname, street, city,
 }
 
 // Checks if there is local storage
-if (localStorage.customerData) {
+if (localStorage.orderData) {
   console.log('data exist');
-  Order.all = JSON.parse(localStorage.customerData);
+  Order.all = JSON.parse(localStorage.orderData);
+} else {
+  console.log('nothing in localStorage');
 }
 
 Order.submit = function(e) {
-
   e.preventDefault();
-  var productName = e.target.options[e.target.selectedIndex].text; /// not working
+  var productName = e.target.value;
+  productName = 'dog';
   var quantity = e.target.quantity.value;
   var firstname = e.target.firstname.value;
   var lastname = e.target.lastname.value;
@@ -47,11 +57,21 @@ Order.submit = function(e) {
   var zipCode = e.target.zipCode.value;
   var phonenumber = '123-456-7890';
   var creditcard = '4400 1234 5678 9123';
-  console.log(e.target.firstname.value);
+  console.log('form submitted');
   new Order(productName, parseInt(quantity), firstname, lastname,
     streetAddress, city, state, zipCode, phonenumber, creditcard);
+
+  // new Order(productName, quantity);
+
   localStorage.orderData = JSON.stringify(Order.all);
-  userForm.reset();
+  // userForm.reset();
 };
 
+
+
 userForm.addEventListener('submit', Order.submit);
+
+
+// userForm.addEventListener('change', function(e) {
+//   console.log(e.target.value);
+// });
