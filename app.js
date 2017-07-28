@@ -16,9 +16,9 @@ Product.all = [];
 Order.all = []; // keep it safe
 
 function Product(name) {
-  this.name = name;
-  this.id = this.name.split('.')[0];
-  this.alt = this.name.replace('-', ' ').split('.')[0];
+  this.source = 'img/' + name;
+  this.id = name.split('.')[0];
+  this.name = name.replace('-', ' ').split('.')[0];
   Product.all.push(this);
 }
 
@@ -44,10 +44,16 @@ if (localStorage.orderData) {
   console.log('nothing in localStorage');
 }
 
+(function() {
+  for (var i = 0; i < productNamesArr.length; i++) {
+    new Product(productNamesArr[i]);
+  }
+})();
+
 Order.submit = function(e) {
   e.preventDefault();
   var productName = e.target.value;
-  productName = 'dog';
+  productName = Product.all[1];
   var quantity = e.target.quantity.value;
   var firstname = e.target.firstname.value;
   var lastname = e.target.lastname.value;
