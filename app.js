@@ -1,6 +1,6 @@
 'use strict';
 
-var userForm = document.getElementById('content');
+var userForm = document.getElementById('orderForm');
 
 var productNamesArr = [
   'bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg',
@@ -34,6 +34,10 @@ if (localStorage.customerData) {
   Order.all = JSON.parse(localStorage.customerData);
 }
 
+var dropdown = function(){
+
+}
+
 Order.submit = function(e) {
   e.preventDefault();
 
@@ -50,6 +54,7 @@ Order.submit = function(e) {
   new Order(productNamesArr[1], parseInt(quantity), firstname, lastname,
     streetAddress, city, state, zipCode, phonenumber, creditcard);
   localStorage.orderData = JSON.stringify(Order.all);
+  userForm.reset();
 };
 
 userForm.addEventListener('submit', Order.submit);
