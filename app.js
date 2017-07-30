@@ -62,7 +62,7 @@ Order.submit = function(e) {
   console.log(typeof productName);
   console.log('form submitted');
   //[e.target.selectedIndex].value;
-  var idNnumber = randomNumber();
+  var idNumber = randomNumber();
   var quantity = e.target.quantity.value;
   var firstname = e.target.firstname.value;
   var lastname = e.target.lastname.value;
@@ -73,7 +73,7 @@ Order.submit = function(e) {
   var phonenumber = e.target.phoneNumber.value;
   var creditcard = e.target.creditCard.value;
 
-  new Order(idNnumber, productName, parseInt(quantity), firstname, lastname,
+  new Order(idNumber, productName, parseInt(quantity), firstname, lastname,
     streetAddress, city, state, zipCode, phonenumber, creditcard);
 
   localStorage.orderData = JSON.stringify(Order.all);

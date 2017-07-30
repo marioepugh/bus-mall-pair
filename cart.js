@@ -15,6 +15,8 @@ var renderOrders = function() {
     var creditCardEl = document.createElement('p');
     var removeBtn = document.createElement('button');
 
+    liEl.id = orders[i].idNumber;
+
     productEl.textContent = 'Item: ' + orders[i].product;
     liEl.appendChild(productEl);
 
@@ -31,6 +33,7 @@ var renderOrders = function() {
     liEl.appendChild(creditCardEl);
 
     removeBtn.innerHTML = '&#10005';
+    removeBtn.className = 'removeBtn';
     liEl.appendChild(removeBtn);
 
     cartOrderUl.appendChild(liEl);
@@ -48,10 +51,19 @@ if (localStorage.orderData) {
 }
 
 var removeItem = function(e) {
-  orders.forEach(function() {
+
+
+  orders.forEach(function(item) {
+
+    if (item.idNumber === e.target.parentNode.id) {
+      console.log(e.target.parentNode.id);
+    }
+
 
   });
 
+
+  // console.log(e.target.parentNode.id);
   // cartOrderUl.removeChild(e.target.parentNode);
 };
 
