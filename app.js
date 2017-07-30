@@ -22,8 +22,9 @@ function Product(name) {
   Product.all.push(this);
 }
 
-function Order(product, quantity, firstname, lastname, street, city,
+function Order(idNumber, product, quantity, firstname, lastname, street, city,
   state, zip, phonenumber, creditcard) {
+  this.idNumber = idNumber;
   this.product = product;
   this.quantity = quantity;
   this.firstname = firstname;
@@ -35,6 +36,11 @@ function Order(product, quantity, firstname, lastname, street, city,
   this.creditcard = creditcard;
   Order.all.push(this);
 }
+
+
+var randomNumber = function() {
+  return Math.floor(Math.random() * 100000);
+};
 
 // Checks if there is local storage
 if (localStorage.orderData) {
@@ -56,7 +62,7 @@ Order.submit = function(e) {
   console.log(typeof productName);
   console.log('form submitted');
   //[e.target.selectedIndex].value;
-
+  var idNnumber = randomNumber();
   var quantity = e.target.quantity.value;
   var firstname = e.target.firstname.value;
   var lastname = e.target.lastname.value;
@@ -67,7 +73,7 @@ Order.submit = function(e) {
   var phonenumber = e.target.phoneNumber.value;
   var creditcard = e.target.creditCard.value;
 
-  new Order(productName, parseInt(quantity), firstname, lastname,
+  new Order(idNnumber, productName, parseInt(quantity), firstname, lastname,
     streetAddress, city, state, zipCode, phonenumber, creditcard);
 
   localStorage.orderData = JSON.stringify(Order.all);
