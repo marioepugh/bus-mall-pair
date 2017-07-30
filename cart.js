@@ -2,11 +2,10 @@
 
 console.log('working');
 
+var cartOrderUl = document.getElementById('cartOrders');
 var orders = [];
 
 var renderOrders = function() {
-  var cartOrderUl = document.getElementById('cartOrders');
-
   for (var i = 0; i < orders.length; i++) {
     var liEl = document.createElement('li');
     var productEl = document.createElement('p');
@@ -40,7 +39,6 @@ var renderOrders = function() {
 };
 
 
-
 if (localStorage.orderData) {
   console.log('data exist');
   orders = JSON.parse(localStorage.orderData);
@@ -48,3 +46,13 @@ if (localStorage.orderData) {
 } else {
   console.log('nothing in localStorage');
 }
+
+var removeItem = function(e) {
+  orders.forEach(function() {
+
+  });
+
+  // cartOrderUl.removeChild(e.target.parentNode);
+};
+
+cartOrderUl.addEventListener('click', removeItem);
