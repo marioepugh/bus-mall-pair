@@ -28,7 +28,7 @@ function Order(product, quantity, firstname, lastname, street, city,
   this.quantity = quantity;
   this.firstname = firstname;
   this.lastname = lastname;
-  this.address = street;
+  this.street = street;
   this.city = city;
   this.state = state;
   this.phonenumber = phonenumber;
@@ -64,29 +64,16 @@ Order.submit = function(e) {
   var city = e.target.city.value;
   var state = e.target.state.value;
   var zipCode = e.target.zipCode.value;
-  var phonenumber = '123-456-7890';
-  var creditcard = '4400 1234 5678 9123';
-
+  var phonenumber = e.target.phoneNumber.value;
+  var creditcard = e.target.creditCard.value;
 
   new Order(productName, parseInt(quantity), firstname, lastname,
     streetAddress, city, state, zipCode, phonenumber, creditcard);
 
-
   localStorage.orderData = JSON.stringify(Order.all);
-  // userForm.reset();
+  userForm.reset();
 };
 
 userForm.addEventListener('submit', Order.submit);
-
-userForm.addEventListener('change', function(e) {
-  // console.log(e.target.options[e.target.selectedIndex].value);
-});
-
-
-
-
-
-
-
 
 console.log(Order.all);

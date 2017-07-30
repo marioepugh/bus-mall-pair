@@ -1,74 +1,50 @@
 'use strict';
 
-var userForm = document.getElementById('orderForm');
+console.log('working');
 
+var orders = [];
 
-Product.all = [];
-Order.all = [];
+var renderOrders = function() {
+  var cartOrderUl = document.getElementById('cartOrders');
 
-function Product(name) {
-  this.source = 'img/' + name;
-  this.id = name.split('.')[0];
-  this.name = name.replace('-', ' ').split('.')[0];
-  Product.all.push(this);
-}
+  for (var i = 0; i < orders.length; i++) {
+    var liEl = document.createElement('li');
+    var productEl = document.createElement('p');
+    var fullNameEl = document.createElement('p');
+    var addressEl = document.createElement('p');
+    var phoneNumberEl = document.createElement('p');
+    var creditCardEl = document.createElement('p');
+    var removeBtn = document.createElement('button');
 
-function Order(product, quantity, firstname, lastname, street, city,
-  state, zip, phonenumber, creditcard) {
-  this.product = product;
-  this.quantity = quantity;
-  this.firstname = firstname;
-  this.lastname = lastname;
-  this.address = street;
-  this.city = city;
-  this.state = state;
-  this.phonenumber = phonenumber;
-  this.creditcard = creditcard;
-  Order.all.push(this);
-}
+    productEl.textContent = 'Item: ' + orders[i].product;
+    liEl.appendChild(productEl);
 
-// Checks if there is local storage
-if (localStorage.orderData) {
-  console.log('data exist');
-  Order.all = JSON.parse(localStorage.orderData);
-} else {
-  console.log('nothing in localStorage');
-}
+    fullNameEl.textContent = 'Customer: ' + orders[i].firstname + ' ' + orders[i].lastname;
+    liEl.appendChild(fullNameEl);
 
-(function() {
-  for (var i = 0; i < productNamesArr.length; i++) {
-    new Product(productNamesArr[i]);
+    addressEl.innerHTML = 'Address: ' + orders[i].street + ' ' + orders[i].city + ' ' + orders[i].state + ', ' + orders[i].zipCode;
+    liEl.appendChild(addressEl);
+
+    phoneNumberEl.textContent = 'Phone Number: ' + orders[i].phonenumber;
+    liEl.appendChild(phoneNumberEl);
+
+    creditCardEl.textContent = 'CC: ' + orders[i].creditcard;
+    liEl.appendChild(creditCardEl);
+
+    removeBtn.innerHTML = '&#10005';
+    liEl.appendChild(removeBtn);
+
+    cartOrderUl.appendChild(liEl);
+    console.log(i, 'times ran');
   }
-})();
-
-Order.submit = function(e) {
-  e.preventDefault();
-  var productName = e.target.value;
-  productName = Product.all[1];
-  var quantity = e.target.quantity.value;
-  var firstname = e.target.firstname.value;
-  var lastname = e.target.lastname.value;
-  var streetAddress = e.target.streetAddress.value;
-  var city = e.target.city.value;
-  var state = e.target.state.value;
-  var zipCode = e.target.zipCode.value;
-  var phonenumber = '123-456-7890';
-  var creditcard = '4400 1234 5678 9123';
-  console.log('form submitted');
-  new Order(productName, parseInt(quantity), firstname, lastname,
-    streetAddress, city, state, zipCode, phonenumber, creditcard);
-
-  // new Order(productName, quantity);
-
-  localStorage.orderData = JSON.stringify(Order.all);
-  // userForm.reset();
 };
 
 
 
-userForm.addEventListener('submit', Order.submit);
-
-
-// userForm.addEventListener('change', function(e) {
-//   console.log(e.target.value);
-// });
+if (localStorage.orderData) {
+  console.log('data exist');
+  orders = JSON.parse(localStorage.orderData);
+  renderOrders();
+} else {
+  console.log('nothing in localStorage');
+}
