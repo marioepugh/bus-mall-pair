@@ -53,25 +53,26 @@ if (localStorage.orderData) {
 Order.submit = function(e) {
   e.preventDefault();
   var productName = e.target.productName.value;
-  console.log(productName);
+  console.log(typeof productName);
   console.log('form submitted');
-   //[e.target.selectedIndex].value;
+  //[e.target.selectedIndex].value;
 
-  // var quantity = e.target.quantity.value;
-  // var firstname = e.target.firstname.value;
-  // var lastname = e.target.lastname.value;
-  // var streetAddress = e.target.streetAddress.value;
-  // var city = e.target.city.value;
-  // var state = e.target.state.value;
-  // var zipCode = e.target.zipCode.value;
-  // var phonenumber = '123-456-7890';
-  // var creditcard = '4400 1234 5678 9123';
+  var quantity = e.target.quantity.value;
+  var firstname = e.target.firstname.value;
+  var lastname = e.target.lastname.value;
+  var streetAddress = e.target.streetAddress.value;
+  var city = e.target.city.value;
+  var state = e.target.state.value;
+  var zipCode = e.target.zipCode.value;
+  var phonenumber = '123-456-7890';
+  var creditcard = '4400 1234 5678 9123';
 
 
-  // new Order('hi', parseInt(quantity), firstname, lastname,
-  //   streetAddress, city, state, zipCode, phonenumber, creditcard);
+  new Order(productName, parseInt(quantity), firstname, lastname,
+    streetAddress, city, state, zipCode, phonenumber, creditcard);
 
-  // localStorage.orderData = JSON.stringify(Order.all);
+
+  localStorage.orderData = JSON.stringify(Order.all);
   // userForm.reset();
 };
 
