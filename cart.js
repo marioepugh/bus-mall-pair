@@ -52,14 +52,11 @@ if (localStorage.orderData) {
 
 var removeItem = function(e) {
 
-
   orders.forEach(function(item) {
 
     if (item.idNumber === e.target.parentNode.id) {
       console.log(e.target.parentNode.id);
     }
-
-
   });
 
 
