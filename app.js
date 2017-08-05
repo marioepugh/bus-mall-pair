@@ -22,9 +22,9 @@ function Product(name) {
   Product.all.push(this);
 }
 
-function Order(idNumber, product, quantity, firstname, lastname, street, city,
+function Order(product, quantity, firstname, lastname, street, city,
   state, zip, phonenumber, creditcard) {
-  this.idNumber = idNumber;
+  this.idNumber = randomNumber();
   this.product = product;
   this.quantity = quantity;
   this.firstname = firstname;
@@ -32,6 +32,7 @@ function Order(idNumber, product, quantity, firstname, lastname, street, city,
   this.street = street;
   this.city = city;
   this.state = state;
+  this.zip = zip;
   this.phonenumber = phonenumber;
   this.creditcard = creditcard;
   Order.all.push(this);
@@ -62,7 +63,7 @@ Order.submit = function(e) {
   console.log(typeof productName);
   console.log('form submitted');
   //[e.target.selectedIndex].value;
-  var idNumber = randomNumber();
+  // debugger;
   var quantity = e.target.quantity.value;
   var firstname = e.target.firstname.value;
   var lastname = e.target.lastname.value;
@@ -73,8 +74,10 @@ Order.submit = function(e) {
   var phonenumber = e.target.phoneNumber.value;
   var creditcard = e.target.creditCard.value;
 
-  new Order(idNumber, productName, parseInt(quantity), firstname, lastname,
-    streetAddress, city, state, zipCode, phonenumber, creditcard);
+
+
+  new Order(productName, parseInt(quantity), firstname, lastname, streetAddress, city,
+    state, zipCode, phonenumber, creditcard);
 
   localStorage.orderData = JSON.stringify(Order.all);
   userForm.reset();
